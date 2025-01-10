@@ -1,4 +1,4 @@
-module server
+module github.com/HakoMC/df-practice
 
 go 1.23
 
