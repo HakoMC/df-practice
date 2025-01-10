@@ -1,4 +1,4 @@
-package dfpractice
+package practice
 
 import (
 	"fmt"
