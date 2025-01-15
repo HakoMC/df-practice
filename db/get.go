@@ -1,11 +1,10 @@
 package db
 
 import (
-	"fmt"
 	"os"
 )
 
-func printURI() {
+func printURI() string {
 	uri := os.Getenv("MONGODB_URI")
-	fmt.Println(uri)
+	return uri
 }

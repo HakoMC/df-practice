@@ -29,7 +29,8 @@ func main() {
 	w := srv.World()
 	w.SetDefaultGameMode(world.GameModeSurvival)
 	registerCommands()
-	db.printURI()
+	uri := db.printURI()
+	fmt.Println(uri)
 
 	srv.Listen()
 
