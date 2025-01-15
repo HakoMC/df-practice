@@ -11,16 +11,16 @@ import (
 	"github.com/go-gl/mathgl/mgl64"
 )
 
-type MoveHandler struct {
+type PlayerHandler struct {
 	player.NopHandler // Embed the NopHandler for default behavior
 	world             *world.World
 }
 
-func NewMoveHandler(w *world.World) *MoveHandler {
-	return &MoveHandler{world: w}
+func NewPlayerHandler(w *world.World) *PlayerHandler {
+	return &PlayerHandler{world: w}
 }
 
-func (h MoveHandler) HandleMove(ctx *player.Context, newPos mgl64.Vec3, newRot cube.Rotation) {
+func (h PlayerHandler) HandleMove(ctx *player.Context, newPos mgl64.Vec3, newRot cube.Rotation) {
 	p := ctx.Val()
 	_ = p
 	fmt.Println("Pos", newPos, "Rot", newRot)

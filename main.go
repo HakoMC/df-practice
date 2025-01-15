@@ -6,9 +6,12 @@ import (
 	"os"
 
 	"github.com/df-mc/dragonfly/server"
+	"github.com/df-mc/dragonfly/server/cmd"
 	"github.com/df-mc/dragonfly/server/player/chat"
+	"github.com/df-mc/dragonfly/server/world"
 	"github.com/pelletier/go-toml"
 
+	"github.com/HakoMC/df-practice/commands"
 	"github.com/HakoMC/df-practice/practice"
 )
 
@@ -24,12 +27,19 @@ func main() {
 	srv.CloseOnProgramEnd()
 
 	w := srv.World()
+	w.SetDefaultGameMode(world.GameModeSurvival)
+	registerCommands()
+	db.printURI()
 
 	srv.Listen()
 
 	for p := range srv.Accept() {
-		p.Handle(practice.NewMoveHandler(w)) // Pass the world from the server
+		p.Handle(practice.NewPlayerHandler(w)) // Pass the world from the server
 	}
+}
+
+func registerCommands() {
+	cmd.Register(cmd.New("example", "An example of using commands", []string{"eg"}, commands.ExampleCommand{}))
 }
 
 // readConfig reads the configuration from the config.toml file, or creates the
